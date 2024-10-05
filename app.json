@@ -8,6 +8,12 @@
       "expo-router"
     ],
     "name": "ai-pay",
-    "slug": "ai-pay"
+    "slug": "ai-pay",
+    "splash": {
+    "image": "./assets/logo.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#001871"
   }
+  }
+  
 }
