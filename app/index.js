@@ -1,26 +1,13 @@
-import {View, Text, SafeAreaView, ScrollView} from 'react-native';
-import './global.css'
+import { Redirect } from "expo-router";
 
-const Home = () =>{
-          return(
-                    <SafeAreaView style={styles.container}>
-                              <ScrollView>
-                                        <Text style={styles.text}>Home</Text>
-                              </ScrollView>       
-                    </SafeAreaView>
-          )
-}
 
-export default Home;
+const Index = () =>{
+          const isLoggedIn = true;
 
-const styles ={
-          container:{
-                    flex:1,
-                    justifyContent:'center',
-                    alignItems:'center'
-          },
-          text:{
-                    fontSize:30,
-                    fontWeight:'bold'
+          if(isLoggedIn){
+                    return <Redirect href="/home" />
           }
+
 }
+
+export default Index;

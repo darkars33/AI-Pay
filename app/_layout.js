@@ -1,81 +1,46 @@
 import { useEffect } from 'react';
 import { Stack } from 'expo-router';
-import { Tabs } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { Ionicons } from '@expo/vector-icons';
+import { useFonts } from 'expo-font';
 
-// Prevent the splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
 
 const Layout = () => {
+  const [fontsLoaded] = useFonts({
+    "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins-ExtraBold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins-ExtraLight": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins-Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-SemiBold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
+  });
 
-          useEffect(() => {
-                    const prepare = async () => {
-                              try {
-                                        // Simulate some preparation logic (e.g., loading resources, fonts)
-                                        await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate a 2s delay
-                              } catch (e) {
-                                        console.warn(e);
-                              } finally {
-                                        // Once the preparation is done, hide the splash screen
-                                        await SplashScreen.hideAsync();
-                              }
-                    };
+  useEffect(() => {
+    const prepare = async () => {
+      try {
+        if (!fontsLoaded) return;
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        await SplashScreen.hideAsync();
+      }
+    };
 
-                    prepare();
-          }, []);
+    prepare();
+  }, [fontsLoaded]);
 
-          return (<Tabs screenOptions={{
-                    tabBarStyle: styles.bottomNav, // Apply custom style here
-                    tabBarLabelStyle: { fontSize: 12, color: 'white' }, // Customize label (optional)
-                    tabBarIconStyle: { marginBottom: 5 }, // Customize icon spacing (optional)
-                  }} >
-                    <Tabs.Screen
-                      name="index"
-                      options={{
-                        headerShown: false,
-                        tabBarLabel: 'Home',
-                        tabBarIcon: ({ color, size }) => (
-                          <Ionicons name="home-outline" color={color} size={size} />
-                        ),
-                      }}
-                    />
-                    <Tabs.Screen
-                      name="assistant"
-                      options={{
-                        headerShown: false,
-                        tabBarLabel: 'Voice',
-                        tabBarIcon: ({ color, size }) => (
-                          <Ionicons name="mic-outline" color={color} size={size} />
-                        ),
-                      }}
-                    />
-                    <Tabs.Screen
-                      name="investAi"
-                      options={{
-                        headerShown: false,
-                        tabBarLabel: 'Invest AI',
-                        tabBarIcon: ({ color, size }) => (
-                          <Ionicons name="analytics-outline" color={color} size={size} />
-                        ),
-                      }}
-                    />
-                  </Tabs>
+  if (!fontsLoaded) return null;
 
-);
+  return (
+    <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="auth" options={{ headerShown: false }} />
+    </Stack>
+  );
 };
 
 export default Layout;
-
-const styles = {
-          bottomNav: {
-            backgroundColor: '#001871',
-            height: 70,
-            position: 'absolute', // Ensure it's positioned at the bottom
-            bottom: 0, // Position at the bottom
-            width: '100%',
-            paddingBottom: 10,
-            paddingTop:9 // Full width
-          }
-};
-        
