@@ -9,9 +9,11 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Foundation from '@expo/vector-icons/Foundation';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Octicons from '@expo/vector-icons/Octicons';
+import { useRouter } from 'expo-router';
 
 
-const Home = () => {
+const Home = React.memo(() => {
+          const router = useRouter();
           return (
                     <SafeAreaView style={styles.container}>
                               <View style={styles.curvedContainer}>
@@ -104,7 +106,7 @@ const Home = () => {
 
                               <View style={{ padding: 10, display: 'flex', alignItems: 'center', gap:15}}>
                                         <TouchableOpacity style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'flex-start', width:'90%'
-                                        }}>
+                                        }} onPress={() => router.push('/transaction')} >
                                                   <MaterialIcons name="history-edu" size={34} color="#001871" />
                                                   <Text style={{fontSize:16, paddingLeft:15}}>See Transaction History</Text>
                                         </TouchableOpacity>
@@ -123,7 +125,7 @@ const Home = () => {
 
                     </SafeAreaView>
           );
-};
+});
 
 export default Home;
 
