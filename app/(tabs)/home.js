@@ -11,7 +11,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Octicons from '@expo/vector-icons/Octicons';
 import { useRouter } from 'expo-router';
 import { useSelector } from 'react-redux';
-import { login } from '../../redux/userSlice';
 
 
 const Home = React.memo(() => {
@@ -25,7 +24,7 @@ const Home = React.memo(() => {
                     <SafeAreaView style={styles.container}>
                               <View style={styles.curvedContainer}>
                                         <View style={styles.container2}>
-                                                  <FontAwesome name="user-circle-o" size={24} color="white" />
+                                                  <TouchableOpacity onPress={() => router.push('/profile')}><FontAwesome name="user-circle-o" size={24} color="white" /></TouchableOpacity>
                                                   <TextInput
                                                             placeholder="Search"
                                                             style={styles.textInput}

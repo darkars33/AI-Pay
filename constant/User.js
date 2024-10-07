@@ -106,7 +106,7 @@ export const UserData = [
           "name": "Aarav Sharma",
           "accountNumber": "7654321",
           "username": "aarav2024",
-          "password": "Password#123",
+          "password": "123",
           "contactNumber": "9123456780",
           "cardNumber": "4321 9876 5432",
           "expiryDate": "08/25",

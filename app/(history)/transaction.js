@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 const Transaction = React.memo(() => {
           const userData = useSelector((state) => state.user.user);
           const [selectedFilter, setSelectedFilter] = useState('all');
-          const [transactions, setTransactions] = useState(userData.data);
+          const [transactions, setTransactions] = useState(Data);
 
 
           console.log(userData.data);
@@ -17,11 +17,11 @@ const Transaction = React.memo(() => {
           const handleFilterChange = (filter) => {
                     setSelectedFilter(filter);
                     if(filter === 'all'){
-                              setTransactions(userData.data);
+                              setTransactions(Data);
                     }else if(filter === 'credit'){
-                              setTransactions(userData.data.filter((item) => item.type === 'credit'));
+                              setTransactions(Data.filter((item) => item.type === 'credit'));
                     }else if(filter === 'debit'){
-                              setTransactions(userData.data.filter((item) => item.type === 'debit'));
+                              setTransactions(Data.filter((item) => item.type === 'debit'));
                     }
           };
 

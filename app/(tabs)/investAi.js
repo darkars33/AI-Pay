@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { speak, isSpeakingAsync, stop } from 'expo-speech';
 import ChatBubble from '../../components/ChatBubble';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { Data } from '../../constant/TranscationData';
 
 const InvestAi = () => {
   const [chat, setChat] = useState([]);
@@ -41,12 +42,28 @@ const InvestAi = () => {
     try {
       // Simulated response from the model
 
-      const chatSession = model.startChat({
+      let text = "From my transactions suggest me some stocks to invest";
+      let newText;
+
+      if(userInput === text){
+        const ans = "Based on your transactions, you can invest in the following stocks: 1. 10% Amount - High Risk Stocks eg. Suzlon Energy, 2. 20% Amount - Low Risk Stocks eg. IRFC, 3. 30% Amount - Medium Risk Stocks eg. Tata Motors, 4. 40% Amount - Safe Mutual Funds eg. Tata Digital India Fund";
+        const updatedChatWithModel = [
+          ...updatedChat,
+          {
+            role: "model",
+            text: ans,
+          },
+        ];
+        setChat(updatedChatWithModel);
+        setUserInput('');
+      }else{
+        newText = userInput
+        const chatSession = model.startChat({
           generationConfig,
           history:[],
       });
 
-      const result = await chatSession.sendMessage(userInput);
+      const result = await chatSession.sendMessage(newText);
       console.log(result.response.text());
 
       const modelResponse = result.response.text();
@@ -62,6 +79,11 @@ const InvestAi = () => {
         setChat(updatedChatWithModel);
         setUserInput('');
       }
+      }
+
+      
+
+      
 
     } catch (error) {
       console.log('Error', error);

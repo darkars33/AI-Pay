@@ -19,7 +19,15 @@
     "image": "./assets/logo.png",
     "resizeMode": "contain",
     "backgroundColor": "#001871"
-  }
+  },
+  "android": {
+      "permissions": ["RECORD_AUDIO"]
+    },
+    "ios": {
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "This app requires microphone access to convert speech to text."
+      }
+    }
   }
   
 }
