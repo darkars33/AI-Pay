@@ -2,10 +2,28 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
+import RNPickerSelect from 'react-native-picker-select';
 
 
 const setAmount = React.memo(() => {
           const [selectedFilter, setSelectedFilter] = useState('add-amount');
+          const [newCategory, setNewCategory] = useState(null);
+          const [newAmount, setNewAmount] = useState('');
+
+          const [data, setData] = useState([
+                    {
+                              category: '',
+                              amount: ''
+                    }
+          ])
+
+          const handleAddAmount = () =>{
+                    setData([...data, { category: newCategory, amount: newAmount }]);
+                    setNewAmount('');
+                    setNewCategory(null);
+          }
+          
+
           return (
                     <SafeAreaView>
                               <Stack.Screen
@@ -31,22 +49,42 @@ const setAmount = React.memo(() => {
                               </View>
 
                               <View style={styles.setAmountContainer}>
-                                        <TextInput
-                                                  style={styles.input}
-                                                  placeholder="Enter category"
-                                                  placeholderTextColor="#666"
-                                                  
+                                        <RNPickerSelect
+                                                  onValueChange={(value) => setNewCategory(value)}
+                                                  items={[
+                                                            { label: 'Food', value: 'food' },
+                                                            { label: 'Transport', value: 'transport' },
+                                                            { label: 'Shopping', value: 'shopping' },
+                                                            { label: 'Entertainment', value: 'entertainment' },
+                                                            { label: 'Bills', value: 'bills' },
+                                                  ]}
+                                                  placeholder={{ label: "Select a category", value: null }}
+                                                  style={pickerSelectStyles}
                                         />
                                         <TextInput
                                                   style={styles.input}
                                                   placeholder="Enter amount"
                                                   placeholderTextColor="#666"
                                                   keyboardType="numeric"
+                                                  value={newAmount}
+                                                  onChangeText={(text) => setNewAmount(text)}
                                         />
-                                        <TouchableOpacity style={styles.button}>
+                                        <TouchableOpacity style={styles.button} onPress={handleAddAmount}>
                                                   <Text style={styles.buttonText}>Set Amount</Text>
                                         </TouchableOpacity>
                               </View>
+
+                              <View style={{margin:10}}>
+                                        
+                                                  <View  style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', margin: 10, backgroundColor:'#D3D3D3', padding:10, borderRadius:10 }}>
+                                                            <Text style={{fontSize:20}}>Pizza</Text>
+                                                            <Text style={{fontSize:20}}>90</Text>
+                                                  </View>
+                                       
+                              </View>
+                              
+
+
                     </SafeAreaView>
           );
 });
@@ -67,7 +105,7 @@ const styles = StyleSheet.create({
           },
           setAmountContainer: {
                     justifyContent: 'space-between',
-                    margin:10
+                    margin: 10
           },
           input: {
                     backgroundColor: '#D3D3D3',
@@ -83,6 +121,49 @@ const styles = StyleSheet.create({
           buttonText: {
                     color: '#fff',
                     textAlign: 'center',
-                    fontSize:20
+                    fontSize: 20
+          },
+          inputIOS: {
+                    height: 40,
+                    paddingHorizontal: 10,
+                    borderWidth: 1,
+                    borderColor: '#333',
+                    borderRadius: 5,
+                    backgroundColor: '#fff',
+                    color: '#333',
+                    marginVertical: 8,
+          },
+          inputAndroid: {
+                    height: 40,
+                    paddingHorizontal: 10,
+                    borderWidth: 1,
+                    borderColor: '#333',
+                    borderRadius: 5,
+                    backgroundColor: '#fff',
+                    color: '#333',
+                    marginVertical: 8,
           },
 })
+
+const pickerSelectStyles = StyleSheet.create({
+          inputIOS: {
+                    height: 40,
+                    paddingHorizontal: 10,
+                    borderWidth: 1,
+                    borderColor: '#333',
+                    borderRadius: 5,
+                    backgroundColor: '#fff',
+                    color: '#333',
+                    marginVertical: 8,
+          },
+          inputAndroid: {
+                    height: 40,
+                    paddingHorizontal: 10,
+                    borderWidth: 1,
+                    borderColor: '#333',
+                    borderRadius: 5,
+                    backgroundColor: '#fff',
+                    color: '#333',
+                    marginVertical: 8,
+          },
+});
