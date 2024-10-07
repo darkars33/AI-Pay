@@ -61,9 +61,9 @@ const Home = React.memo(() => {
                                                             gap: 50,
                                                             marginTop: 20 // Center items vertically
                                                   }}>
-                                                            <TouchableOpacity style={{ display: 'flex', alignItems: 'center' }}>
-                                                                      <FontAwesome name="tv" size={30} color="#001871" />
-                                                                      <Text style={{ fontSize: 10 }}>Subscription</Text>
+                                                            <TouchableOpacity style={{ display: 'flex', alignItems: 'center' }} onPress={() => router.push('/setAmount')} >
+                                                                      <MaterialCommunityIcons name="set-all" size={30} color="#001871" />
+                                                                      <Text style={{ fontSize: 10 }}>Expense Check</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity style={{ display: 'flex', alignItems: 'center' }}>
