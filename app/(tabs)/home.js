@@ -10,10 +10,17 @@ import Foundation from '@expo/vector-icons/Foundation';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Octicons from '@expo/vector-icons/Octicons';
 import { useRouter } from 'expo-router';
+import { useSelector } from 'react-redux';
+import { login } from '../../redux/userSlice';
 
 
 const Home = React.memo(() => {
           const router = useRouter();
+
+          const user = useSelector((state) => state.user.user);
+
+          console.log(user.name);
+
           return (
                     <SafeAreaView style={styles.container}>
                               <View style={styles.curvedContainer}>
@@ -27,7 +34,7 @@ const Home = React.memo(() => {
                                         </View>
                                         <View style={styles.welcomeContainer}>
                                                   <Text style={styles.textWelcome}>Welcome</Text>
-                                                  <Text style={styles.textName}>Nidhi</Text>
+                                                  <Text style={styles.textName}>{user.name}</Text>
                                         </View>
                               </View>
                               <View style={{ display: 'flex', alignItems: 'center', marginTop: 10 }}>
@@ -39,7 +46,7 @@ const Home = React.memo(() => {
                                                             alignItems: 'center',
                                                             gap: 50 // Center items vertically
                                                   }}>
-                                                            <TouchableOpacity style={{ display: 'flex', alignItems: 'center' }} onPress={() => alert("ruk jao logic likhana bacha hai")}>
+                                                            <TouchableOpacity style={{ display: 'flex', alignItems: 'center' }} onPress={() => router.push('/qrCode')}>
                                                                       <AntDesign name="scan1" size={30} color="#001871" />
                                                                       <Text style={{ fontSize: 10 }}>ScanPay</Text>
                                                             </TouchableOpacity>

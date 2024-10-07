@@ -4,19 +4,24 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 import FinancePieChart from "../../components/FinancePieChart";
 import { Data } from '../../constant/TranscationData';
+import { useSelector } from 'react-redux';
 
 const Transaction = React.memo(() => {
+          const userData = useSelector((state) => state.user.user);
           const [selectedFilter, setSelectedFilter] = useState('all');
-          const [transactions, setTransactions] = useState(Data);
+          const [transactions, setTransactions] = useState(userData.data);
+
+
+          console.log(userData.data);
 
           const handleFilterChange = (filter) => {
                     setSelectedFilter(filter);
                     if(filter === 'all'){
-                              setTransactions(Data);
+                              setTransactions(userData.data);
                     }else if(filter === 'credit'){
-                              setTransactions(Data.filter((item) => item.type === 'credit'));
+                              setTransactions(userData.data.filter((item) => item.type === 'credit'));
                     }else if(filter === 'debit'){
-                              setTransactions(Data.filter((item) => item.type === 'debit'));
+                              setTransactions(userData.data.filter((item) => item.type === 'debit'));
                     }
           };
 

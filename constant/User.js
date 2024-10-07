@@ -1,9 +1,9 @@
 export const UserData = [
 {
-  "name": "Nidhi",
+  "name": "Nidhi Kumari",
   "accountNumber": "1235678",
-  "username": "nidhi1815",
-  "password": "Coconut#20",
+  "username": "nidhi",
+  "password": "1234",
   "contactNumber": "7499827773",
   "cardNumber": "1234 2345 6789",
   "expiryDate": "05/26",

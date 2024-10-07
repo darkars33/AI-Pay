@@ -1,15 +1,18 @@
 import { Redirect } from "expo-router";
+import { useSelector } from "react-redux";
 
+const Index = () => {
+  
+  const isLogged = useSelector((state) => state.user.isLoggedIn);
 
-const Index = () =>{
-          const isLoggedIn = true;
+  console.log(isLogged);
 
-          if(isLoggedIn){
-                    return <Redirect href="/home" />
-          }else{
-                    return <Redirect href="/auth/login" />
-          }
-
-}
+  // Redirect the user based on their login status
+  if (isLogged) {
+    return <Redirect href="/home" />;
+  } else {
+    return <Redirect href="/auth/login" />;
+  }
+};
 
 export default Index;
