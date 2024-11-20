@@ -16,18 +16,20 @@ const Assistant = () => {
           };
 
           const handleSpeak = () =>{
-                    setTimeout(() =>{
-                              setText('Transfer 500Rs to Vishal for Food');
-                    },3000)
-                    setTimeout(() =>{
-                         speak();   
-                    },4000)
-                    setTimeout(() =>{
-                              router.push('/enterPin');
-                    },6000)
-                    setTimeout(() =>{
-                              setText('')
-                    }, 7000)
+                    // setTimeout(() =>{
+                    //           setText('Transfer 500Rs to Vishal for Food');
+                    // },3000)
+                    // setTimeout(() =>{
+                    //      speak();   
+                    // },4000)
+                    // setTimeout(() =>{
+                    //           router.push('/enterPin');
+                    // },6000)
+                    // setTimeout(() =>{
+                    //           setText('')
+                    // }, 7000)
+
+                    alert("Error");
           }
 
           

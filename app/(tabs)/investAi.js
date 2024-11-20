@@ -13,7 +13,7 @@ const InvestAi = () => {
   const [error, setError] = useState(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
-  const apiKey= "AIzaSyD4hl5F5RWVqFxvCTToz2ZKmEZWoQlhKWw";
+  const apiKey= "AIzaSyCNgmMov7D47CNMs5zpEM6VB8s6jQbCdzs";
   const genAi = new GoogleGenerativeAI(apiKey);
 
   const model = genAi.getGenerativeModel({
